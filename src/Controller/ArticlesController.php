@@ -7,7 +7,7 @@ class ArticlesController extends AppController
 {
     public function index()
     {
-        $this->loadComponente(Paginator); 
+        $this->loadComponente('Paginator'); 
         $articles = $this->Paginator->paginate($this->Articles->find());
         $this->set(compact('articles'));        
     }
