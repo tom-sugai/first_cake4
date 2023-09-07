@@ -5,9 +5,14 @@ use App\Controller\AppController;
 
 class ArticlesController extends AppController
 {
+    public function initialize(): void
+    {
+        parent ::initialize();
+        $this->loadComponent('Paginator');
+    }
+
     public function index()
     {
-        $this->loadComponent('Paginator'); 
         $articles = $this->Paginator->paginate($this->Articles->find());
         $this->set(compact('articles'));        
     }
