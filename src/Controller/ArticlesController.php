@@ -14,11 +14,11 @@ class ArticlesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'limit' => 5,
-            'order' => ['Articles.id' => 'desc']
+            'limit' => 10,
+            'order' => ['Articles.id' => 'asc']
         ];
 
-        $articles = $this->Paginator->paginate($this->Articles->find());
+        $articles = $this->paginate($this->Articles->find());
         $this->set(compact('articles'));        
     }
 
