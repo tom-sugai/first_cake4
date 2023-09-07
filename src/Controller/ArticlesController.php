@@ -5,6 +5,11 @@ use App\Controller\AppController;
 
 class ArticlesController extends AppController
 {
+    public $paginate = [
+        'limit' => 10,
+        'order' => ['Articles.id' => 'desc']
+    ];
+
     public function initialize(): void
     {
         parent ::initialize();
@@ -13,11 +18,6 @@ class ArticlesController extends AppController
 
     public function index()
     {
-        $this->paginate = [
-            'limit' => 10,
-            'order' => ['Articles.id' => 'desc']
-        ];
-
         $articles = $this->Paginator->paginate($this->Articles->find());
         $this->set(compact('articles'));        
     }
