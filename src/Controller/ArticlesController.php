@@ -16,7 +16,7 @@ class ArticlesController extends AppController
     {
         $this->paginate = [
             'limit' => 10,
-            'order' => ['Articles.id' => 'asc']
+            'order' => ['Articles.id' => 'desc']
         ];
 
         $articles = $this->paginate($this->Articles->find());
