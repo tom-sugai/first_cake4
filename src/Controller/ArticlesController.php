@@ -72,7 +72,8 @@ class ArticlesController extends AppController
         //$users = $this->Articles->Users->find('list', ['limit' => 200]);
         //$tags = $this->Articles->Tags->find('list', ['limit' => 200]);
         //debug($tags);
-        
-        $this->set(compact('article', 'users', 'tags'));
+
+        $this->set(compact('article'));
+        //$this->set(compact('article', 'users', 'tags'));
     }
 }
