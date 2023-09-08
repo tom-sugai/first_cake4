@@ -4,7 +4,7 @@ namespace App\Model\Table;
 use Cake\ORM\Table;
 use Cake\Utility\Text;
 use Cake\Event\EventInterface;
-use Cake\Validation\Validatore;
+use Cake\Validation\Validator;
 
 class ArticlesTable extends Table
 {
@@ -19,7 +19,7 @@ class ArticlesTable extends Table
         parent::initialize($config);
         $this->addBehavior('Timestamp');
     }
-
+    
     public function validationDefault(Validator $validator): Validator
     {
         $validator
@@ -32,6 +32,7 @@ class ArticlesTable extends Table
     
         return $validator;
     }
+    
 
     public function beforSave(EventInterface $event, $entity, $options)
     {
