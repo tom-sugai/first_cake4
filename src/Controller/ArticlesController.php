@@ -51,4 +51,28 @@ class ArticlesController extends AppController
         //$this->set(compact('article', 'users', 'tags'));
     }
 
+    public function edit($slug = null)
+    {
+        // load article
+        $article = $this->Articles->findBySlug($slug)->firstOrFail(); 
+        //$article = $this->Articles->findBySlug($slug)->contain('Tags')->firstOrFail();
+        // save process
+        if ($this->request->is(['post', 'put'])) {
+            $this->Articles->patchEntity($article, $this->request->getData(),[
+                // 追加: user_id の更新を無効化
+                'accessibleFields' => ['user_id' => false]   
+            ]);
+            
+            if ($this->Articles->save($article)) {
+                $this->Flash->success(__('edit : The article has been saved.'));
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The article could not be saved. Please, try again.'));
+        }
+        //$users = $this->Articles->Users->find('list', ['limit' => 200]);
+        //$tags = $this->Articles->Tags->find('list', ['limit' => 200]);
+        //debug($tags);
+        
+        $this->set(compact('article', 'users', 'tags'));
+    }
 }
