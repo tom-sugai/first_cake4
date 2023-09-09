@@ -15,6 +15,11 @@
             </td>
             <td>
                 <?= $this->Html->link('edit', ['action' => 'edit', $article->slug]) ?>
+                <?= $this->Form->postLink(
+                    'delete',
+                    ['action' => 'delete', $article->slug],
+                    ['confirm' => 'delete OK ?'])
+                ?>
             </td>
         </tr>
     <?php endforeach; ?>
