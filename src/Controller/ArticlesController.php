@@ -96,7 +96,7 @@ class ArticlesController extends AppController
     {
         $tags = $this->request->getParam('pass');
         //debug($tags);
-        $articles =$this->Articles->find('tagged', ['tags' => $tags]);
+        $articles =$this->Articles->find('tagged', ['tags' => $tags])->all();
 
         $this->set([
             'articles' => $articles,
