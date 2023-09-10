@@ -18,6 +18,7 @@ class ArticlesTable extends Table
     {
         parent::initialize($config);
         $this->addBehavior('Timestamp');
+        $this->belongsToMany('Tags');
     }
     
     public function validationDefault(Validator $validator): Validator
