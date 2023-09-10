@@ -45,8 +45,9 @@ class ArticlesController extends AppController
             }
             $this->Flash->error(__('The article could not be saved. Please, try again.'));
         }
-
+        // get Tag list
         $tags = $this->Articles->Tags->find('list')->all();
+        // set view context
         $this->set('tags', $tags);
         $this->set('article', $article);
 
