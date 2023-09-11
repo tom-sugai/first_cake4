@@ -34,7 +34,7 @@ class ArticlesTable extends Table
     }
     
 
-    public function beforSave(EventInterface $event, $entity, $options)
+    public function beforeSave(EventInterface $event, $entity, $options)
     {
         if ($entity->isNew() && !$entity->slug) {
             $sluggedTitle = Text::slug($entity->title);
