@@ -35,7 +35,7 @@ class ArticlesController extends AppController
         if ($this->request->is('post')) {
             $article = $this->Articles->patchEntity($article, $this->request->getData());
             
-            $article->user_id = 1;
+            $article->user_id = 5;
             // 変更: セッションから user_id をセット
             //$article->user_id = $this->Auth->user('id');
  

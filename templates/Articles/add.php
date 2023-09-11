@@ -4,7 +4,7 @@
         <legend><?= __('Add Article') ?></legend>
         <?php
             //echo $this->Form->control('user_id', ['options' => $users]);
-            echo $this->Form->controle('user_id', ['type' => 'hidden', 'value' => 1]);
+            echo $this->Form->controle('user_id', ['type' => 'hidden', 'value' => 5]);
             echo $this->Form->control('title');
             echo $this->Form->control('body');
             //echo $this->Form->control('published');           
