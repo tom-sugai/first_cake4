@@ -2,11 +2,15 @@
 <?= $this->Html->link('Add Article', ['action' => 'add']) ?>
 <table>
     <tr>
+        <th>id</th>
         <th>title</th>
         <th>created</th>
     </tr>
     <?php foreach ($articles as $article ): ?>
         <tr>
+            <td>
+                <?= $article->id ?>
+            </td>
             <td>
                 <?= $this->Html->link($article->title, ['action' => 'view', $article->slug]) ?>
             </td>
