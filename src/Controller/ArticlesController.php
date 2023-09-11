@@ -58,7 +58,7 @@ class ArticlesController extends AppController
     public function edit($slug = null)
     {
         // load article
-        $article = $this->Articles->findBySlug($slug)->firstOrFail(); 
+        $article = $this->Articles->findBySlug($slug)->contain('Tags')->firstOrFail(); 
         //$article = $this->Articles->findBySlug($slug)->contain('Tags')->firstOrFail();
         // save process
         if ($this->request->is(['post', 'put'])) {
