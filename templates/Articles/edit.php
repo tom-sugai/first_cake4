@@ -9,7 +9,7 @@
             echo $this->Form->control('published');
             // tagsテーブルからタグ一覧の選択リストを表示する
             //echo $this->Form->control('tags._ids',['options' => $tags]); 
-            echo $this->Form->control('tags_string',['type' => 'text']);  
+            echo $this->Form->control('tag_string',['type' => 'text']);  
         ?>
     </fieldset>
     <?= $this->Form->button(__('Save Article')) ?>
