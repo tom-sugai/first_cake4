@@ -9,7 +9,7 @@ class Article extends Entity
     protected $_accessible = [
         '*' => true,
         'id' => false,
-        'slug' => false,
+        'slug' => true,
         'tag_string' => true
     ];
 
