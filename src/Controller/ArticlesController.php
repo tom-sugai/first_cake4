@@ -59,7 +59,6 @@ class ArticlesController extends AppController
     {
         // load article
         $article = $this->Articles->findBySlug($slug)->contain('Tags')->firstOrFail(); 
-        //$article = $this->Articles->findBySlug($slug)->contain('Tags')->firstOrFail();
         // save process
         if ($this->request->is(['post', 'put'])) {
             $this->Articles->patchEntity($article, $this->request->getData(),[
