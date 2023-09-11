@@ -25,7 +25,7 @@ class ArticlesController extends AppController
 
     public function view($slug = null)
     {
-        $article = $this->Articles->findBySlug($slug)->firstOrFail();
+        $article = $this->Articles->findBySlug($slug)->contain('Tags')->firstOrFail();
         $this->set(compact('article'));
     }
 
@@ -34,28 +34,29 @@ class ArticlesController extends AppController
         $article = $this->Articles->newEmptyEntity();
         if ($this->request->is('post')) {
             $article = $this->Articles->patchEntity($article, $this->request->getData());
-            
             $article->user_id = 5;
             // 変更: セッションから user_id をセット
             //$article->user_id = $this->Auth->user('id');
- 
             if ($this->Articles->save($article)) {
                 $this->Flash->success(__('The article has been saved.'));
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('The article could not be saved. Please, try again.'));
         }
+        // get Tag list
+        $tags = $this->Articles->Tags->find('list')->all();
+        // set view context
+        $this->set('tags', $tags);
         $this->set('article', $article);
+
         //$users = $this->Articles->Users->find('list', ['limit' => 200]);
-        //$tags = $this->Articles->Tags->find('list', ['limit' => 200]);
         //$this->set(compact('article', 'users', 'tags'));
     }
 
     public function edit($slug = null)
     {
         // load article
-        $article = $this->Articles->findBySlug($slug)->firstOrFail(); 
-        //$article = $this->Articles->findBySlug($slug)->contain('Tags')->firstOrFail();
+        $article = $this->Articles->findBySlug($slug)->contain('Tags')->firstOrFail(); 
         // save process
         if ($this->request->is(['post', 'put'])) {
             $this->Articles->patchEntity($article, $this->request->getData(),[
@@ -70,9 +71,9 @@ class ArticlesController extends AppController
             $this->Flash->error(__('The article could not be saved. Please, try again.'));
         }
         //$users = $this->Articles->Users->find('list', ['limit' => 200]);
-        //$tags = $this->Articles->Tags->find('list', ['limit' => 200]);
-        //debug($tags);
-
+        $tags = $this->Articles->Tags->find('list')->all();
+        //set view context
+        $this->set('tags', $tags);
         $this->set(compact('article'));
         //$this->set(compact('article', 'users', 'tags'));
     }
@@ -86,5 +87,17 @@ class ArticlesController extends AppController
             $this->Flash->success(__('The {0} article has been deleted.', $article->title));
             return $this->redirect(['action' => 'index']);
         }
+    }
+
+    public function tags()
+    {
+        $tags = $this->request->getParam('pass');
+        //debug($tags);
+        $articles =$this->Articles->find('tagged', ['tags' => $tags])->all();
+
+        $this->set([
+            'articles' => $articles,
+            'tags' => $tags
+        ]);
     }
 }
