@@ -52,4 +52,12 @@ class AppController extends Controller
          */
         //$this->loadComponent('FormProtection');
     }
+
+    // in src/Controller/AppController.php
+    public function beforeFilter(\Cake\Event\EventInterface $event)
+    {
+        parent::beforeFilter($event);
+        // アプリケーション内のすべてのコントローラーの index と view アクションをパブリックにし、認証チェックをスキップします
+        $this->Authentication->addUnauthenticatedActions(['index', 'view']);
+    }
 }
