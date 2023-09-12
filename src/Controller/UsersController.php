@@ -38,6 +38,17 @@ class UsersController extends AppController
             $this->Flash->error(__('Invalid username or password'));
         }
     }
+
+    // in src/Controller/UsersController.php
+    public function logout()
+    {
+        $result = $this->Authentication->getResult();
+        // POST, GET を問わず、ユーザーがログインしている場合はリダイレクトします
+        if ($result && $result->isValid()) {
+            $this->Authentication->logout();
+            return $this->redirect(['controller' => 'Users', 'action' => 'login']);
+        }
+    }
     
     /**
      * Index method
