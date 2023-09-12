@@ -102,7 +102,7 @@ class Application extends BaseApplication
             ->add(new RoutingMiddleware($this))
 
             // RoutingMiddleware の後に認証を追加
-            ->add(new AuthenticationMiddleware($this));
+            ->add(new AuthenticationMiddleware($this))
 
             // Parse various types of encoded request bodies so that they are
             // available as array through $request->getData()
