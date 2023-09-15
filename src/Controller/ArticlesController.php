@@ -14,6 +14,8 @@ class ArticlesController extends AppController
 
     public function index()
     {
+        $this->Authorization->skipAuthorization();
+
         $this->paginate = [
             'limit' => 10,
             'order' => ['Articles.id' => 'desc']
@@ -25,6 +27,8 @@ class ArticlesController extends AppController
 
     public function view($slug = null)
     {
+        $this->Authorization->skipAuthorization();
+        
         $article = $this->Articles->findBySlug($slug)->contain('Tags')->firstOrFail();
         $this->set(compact('article'));
     }
