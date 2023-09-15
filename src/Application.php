@@ -131,6 +131,13 @@ class Application extends BaseApplication
         return $middlewareQueue;
     }
 
+    public function getAuthorizationService(ServerRequestInterface $request): AuthorizationServiceInterface
+    {
+        $resolver = new OrmResolver();
+
+        return new AuthorizationService($resolver);
+    }
+
     /**
      * Register application container services.
      *
