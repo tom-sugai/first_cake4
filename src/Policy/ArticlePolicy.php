@@ -48,7 +48,7 @@ class ArticlePolicy
     public function canDelete(IdentityInterface $user, Article $article)
     {
             // logged in users can delete their own articles.
-            return $this->isAuthor($user, $article);
+            return ($user->role === 'admin' || $this->isAuthor($user, $article));
     }
 
     /**
