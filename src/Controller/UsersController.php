@@ -18,11 +18,13 @@ class UsersController extends AppController
         // 無限リダイレクトループの問題を防ぎます
         $this->Authentication->addUnauthenticatedActions(['login', 'add']);
 
-        $this->Authorization->skipAuthorization();
+        //$this->Authorization->skipAuthorization();
     }
 
     public function login()
     {
+        $this->Authorization->skipAuthorization();
+
         $this->request->allowMethod(['get', 'post']);
         $result = $this->Authentication->getResult();
         // POST, GET を問わず、ユーザーがログインしている場合はリダイレクトします
@@ -44,6 +46,8 @@ class UsersController extends AppController
     // in src/Controller/UsersController.php
     public function logout()
     {
+        $this->Authorization->skipAuthorization();
+
         $result = $this->Authentication->getResult();
         // POST, GET を問わず、ユーザーがログインしている場合はリダイレクトします
         if ($result && $result->isValid()) {
@@ -59,6 +63,8 @@ class UsersController extends AppController
      */
     public function index()
     {
+        $this->Authorization->skipAuthorization();
+        
         $users = $this->paginate($this->Users);
 
         $this->set(compact('users'));
@@ -87,6 +93,8 @@ class UsersController extends AppController
      */
     public function add()
     {
+        $this->Authorization->skipAuthorization();
+
         $user = $this->Users->newEmptyEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
