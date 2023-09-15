@@ -17,6 +17,8 @@ class UsersController extends AppController
         // 認証を必要としないログインアクションを構成し、
         // 無限リダイレクトループの問題を防ぎます
         $this->Authentication->addUnauthenticatedActions(['login', 'add']);
+
+        $this->Authorization->skipAuthorization();
     }
 
     public function login()
