@@ -34,7 +34,8 @@ class ArticlePolicy
     public function canEdit(IdentityInterface $user, Article $article)
     {
              // logged in users can edit their own articles.
-             return $this->isAuthor($user, $article);   
+             //return $this->isAuthor($user, $article);
+             return ($user->role === 'admin' || $this->isAuthor($user, $article));   
     }
 
     /**
