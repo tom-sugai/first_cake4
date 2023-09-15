@@ -18,7 +18,7 @@ class UsersController extends AppController
         // 無限リダイレクトループの問題を防ぎます
         $this->Authentication->addUnauthenticatedActions(['login', 'add']);
 
-        //$this->Authorization->skipAuthorization();
+        $this->Authorization->skipAuthorization();
     }
 
     public function login()
