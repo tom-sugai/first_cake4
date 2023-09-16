@@ -11,6 +11,13 @@ namespace App\Controller;
  */
 class CommentsController extends AppController
 {
+    public function beforeFilter(\Cake\Event\EventInterface $event)
+    {
+        parent::beforeFilter($event);
+
+        $this->Authorization->skipAuthorization();
+    }
+
     /**
      * Index method
      *
