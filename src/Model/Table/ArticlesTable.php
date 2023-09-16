@@ -18,8 +18,24 @@ class ArticlesTable extends Table
     public function initialize(array $config) : void
     {
         parent::initialize($config);
+
         $this->addBehavior('Timestamp');
+
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id',
+            'joinType' => 'INNER',
+        ]);
+
+        $this->hasMany('Comments', [
+            'foreignKey' => 'article_id',
+            // ▼ 下記2行を追加
+            'dependent' => true,
+            'cascadeCallbacks' => true,
+        ]);
+
         $this->belongsToMany('Tags',[
+            'foreignKey' => 'article_id',
+            'targetForeignKey' => 'tag_id',
             'joinTable' => 'articles_tags',
             'dependent' => true
         ]);
