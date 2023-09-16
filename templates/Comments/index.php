@@ -16,6 +16,7 @@
                     <th><?= $this->Paginator->sort('published') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
                     <th><?= $this->Paginator->sort('modified') ?></th>
+                    <th><?= $this->Paginator->sort('contributor') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -27,6 +28,7 @@
                     <td><?= h($comment->published) ?></td>
                     <td><?= h($comment->created) ?></td>
                     <td><?= h($comment->modified) ?></td>
+                    <td><?= h($comment->contributor) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $comment->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $comment->id]) ?>

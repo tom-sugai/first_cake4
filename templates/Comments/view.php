@@ -23,6 +23,10 @@
                     <td><?= $comment->has('article') ? $this->Html->link($comment->article->title, ['controller' => 'Articles', 'action' => 'view', $comment->article->id]) : '' ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Contributor') ?></th>
+                    <td><?= h($comment->contributor) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Id') ?></th>
                     <td><?= $this->Number->format($comment->id) ?></td>
                 </tr>

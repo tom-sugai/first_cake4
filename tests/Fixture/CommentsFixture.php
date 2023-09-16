@@ -23,8 +23,9 @@ class CommentsFixture extends TestFixture
                 'article_id' => 1,
                 'body' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
                 'published' => 1,
-                'created' => '2023-09-15 06:49:18',
-                'modified' => '2023-09-15 06:49:18',
+                'created' => '2023-09-16 05:21:58',
+                'modified' => '2023-09-16 05:21:58',
+                'contributor' => 'Lorem ipsum dolor sit amet',
             ],
         ];
         parent::init();

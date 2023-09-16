@@ -73,6 +73,12 @@ class CommentsTable extends Table
             ->boolean('published')
             ->allowEmptyString('published');
 
+        $validator
+            ->scalar('contributor')
+            ->maxLength('contributor', 50)
+            ->requirePresence('contributor', 'create')
+            ->notEmptyString('contributor');
+
         return $validator;
     }
 

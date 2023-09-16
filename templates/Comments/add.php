@@ -21,6 +21,7 @@
                     echo $this->Form->control('article_id', ['options' => $articles]);
                     echo $this->Form->control('body');
                     echo $this->Form->control('published');
+                    echo $this->Form->control('contributor');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

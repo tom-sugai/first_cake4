@@ -14,6 +14,7 @@ use Cake\ORM\Entity;
  * @property bool|null $published
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
+ * @property string $contributor
  *
  * @property \App\Model\Entity\Article $article
  */
@@ -34,6 +35,7 @@ class Comment extends Entity
         'published' => true,
         'created' => true,
         'modified' => true,
+        'contributor' => true,
         'article' => true,
     ];
 }
