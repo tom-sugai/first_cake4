@@ -54,9 +54,10 @@ class CommentsController extends AppController
      *
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($article_id)
     {
         $comment = $this->Comments->newEmptyEntity();
+        $comment->article_id = $article_id;
         if ($this->request->is('post')) {
             $comment = $this->Comments->patchEntity($comment, $this->request->getData());
             if ($this->Comments->save($comment)) {
