@@ -11,6 +11,16 @@ namespace App\Controller;
  */
 class CommentsController extends AppController
 {
+    public function beforeFilter(\Cake\Event\EventInterface $event)
+    {
+        parent::beforeFilter($event);
+        // 認証を必要としないログインアクションを構成し、
+        // 無限リダイレクトループの問題を防ぎます
+        //$this->Authentication->addUnauthenticatedActions(['login', 'add']);
+
+        $this->Authorization->skipAuthorization();
+    }
+
     /**
      * Index method
      *
