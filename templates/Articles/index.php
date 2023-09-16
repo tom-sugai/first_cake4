@@ -4,6 +4,8 @@
     <tr>
         <th>id</th>
         <th>title</th>
+        <th>body</th>
+        <th>comment</th>
         <th>created</th>
     </tr>
     <?php foreach ($articles as $article ): ?>
@@ -13,6 +15,18 @@
             </td>
             <td>
                 <?= $this->Html->link($article->title, ['action' => 'view', $article->slug]) ?>
+            </td>
+            <td>
+                <?= $article->body ?>
+            </td>
+            <td>
+                <?php
+                    if ($article->comments){
+                        echo $article->comments['0']->body;
+                    } else {
+                        echo "comments -- null";
+                    }    
+                 ?>
             </td>
             <td>
                 <?= $article->created->format(DATE_RFC850) ?>
