@@ -162,9 +162,9 @@ class Application extends BaseApplication
         $this->addOptionalPlugin('Cake/Repl');
         $this->addOptionalPlugin('Bake');
 
-        $this->addPlugin('Migrations');
-
         // Load more plugins here
+        $this->addPlugin('Migrations');
+        $this->addPlugin('Authentication');
     }
 
     public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface
