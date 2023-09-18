@@ -45,6 +45,14 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <a target="_blank" rel="noopener" href="https://api.cakephp.org/">API</a>
         </div>
     </nav>
+    <?= "Login User : " . $useremail ?>
+    <div class="top-menu">
+        <?= $this->Html->link('Login','/users/login') ?><br>   
+        <?= $this->Html->link('Logout','/users/logout') ?><br> 
+        <?= $this->Html->link('NewPost','/articles/add') ?><br> 
+        <?= $this->Html->link('MyPage',['controller' => 'Users', 'action' => 'view', $userid]) ?><br> 
+        <?= $this->Html->link('TopPage','/articles/index') ?><br> 
+    </div>
     <main class="main">
         <div class="container">
             <?= $this->Flash->render() ?>
