@@ -54,13 +54,21 @@ class AppController extends Controller
          */
         //$this->loadComponent('FormProtection');
 
+        // set login user info to view context
+        $userid = null;
+        if($this->request->getAttribute('identity') !== null){
+            $userid = $this->request->getAttribute('identity')->getIdentifier();
+            //debug($userid);
+        }
         $useremail = null;
         // get user_email
         if($this->request->getAttribute('identity') !== null){
             $useremail = $this->request->getAttribute('identity')->get('email');
             //debug($useremail);
         }
-        echo $useremail;
+        //echo $useremail;
+        $this->set('userid', $userid);
+        $this->set('useremail', $useremail);
         
     }
 
