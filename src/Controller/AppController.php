@@ -53,6 +53,15 @@ class AppController extends Controller
          * see https://book.cakephp.org/4/en/controllers/components/form-protection.html
          */
         //$this->loadComponent('FormProtection');
+
+        $useremail = null;
+        // get user_email
+        if($this->request->getAttribute('identity') !== null){
+            $useremail = $this->request->getAttribute('identity')->get('email');
+            //debug($useremail);
+        }
+        echo $useremail;
+        
     }
 
     // in src/Controller/AppController.php
