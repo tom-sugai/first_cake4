@@ -21,10 +21,10 @@
             </td>
             <td>
                 <?php
-                    if ($article->comments){
-                        echo $article->comments['0']->body;
+                    if ($article->comments !== null){
+                        echo count($article->comments);
                     } else {
-                        echo "comments -- null";
+                        echo "0";
                     }    
                  ?>
             </td>
