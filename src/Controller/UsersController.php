@@ -17,14 +17,12 @@ class UsersController extends AppController
         // 認証を必要としないログインアクションを構成し、
         // 無限リダイレクトループの問題を防ぎます
         $this->Authentication->addUnauthenticatedActions(['login', 'add']);
-
-        $this->Authorization->skipAuthorization();
+        //$this->Authorization->skipAuthorization();
     }
 
     public function login()
     {
         $this->Authorization->skipAuthorization();
-
         $this->request->allowMethod(['get', 'post']);
         $result = $this->Authentication->getResult();
         // POST, GET を問わず、ユーザーがログインしている場合はリダイレクトします
@@ -34,7 +32,6 @@ class UsersController extends AppController
                 'controller' => 'Articles',
                 'action' => 'index',
             ]);
-
             return $this->redirect($redirect);
         }
         // ユーザーが submit 後、認証失敗した場合は、エラーを表示します
@@ -47,12 +44,11 @@ class UsersController extends AppController
     public function logout()
     {
         $this->Authorization->skipAuthorization();
-
         $result = $this->Authentication->getResult();
         // POST, GET を問わず、ユーザーがログインしている場合はリダイレクトします
         if ($result && $result->isValid()) {
             $this->Authentication->logout();
-            return $this->redirect(['controller' => 'Users', 'action' => 'login']);
+            return $this->redirect(['controller' => 'Articles', 'index' => 'login']);
         }
     }
     
@@ -63,10 +59,8 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $this->Authorization->skipAuthorization();
-        
+        //$this->Authorization->skipAuthorization();
         $users = $this->paginate($this->Users);
-
         $this->set(compact('users'));
     }
 
@@ -82,7 +76,6 @@ class UsersController extends AppController
         $user = $this->Users->get($id, [
             'contain' => ['Articles'],
         ]);
-
         $this->set(compact('user'));
     }
 
@@ -94,7 +87,6 @@ class UsersController extends AppController
     public function add()
     {
         $this->Authorization->skipAuthorization();
-
         $user = $this->Users->newEmptyEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
