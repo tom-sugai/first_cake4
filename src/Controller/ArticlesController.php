@@ -30,7 +30,7 @@ class ArticlesController extends AppController
     {
         $this->Authorization->skipAuthorization();
         
-        $article = $this->Articles->findBySlug($slug)->contain('Tags')->firstOrFail();
+        $article = $this->Articles->findBySlug($slug)->contain(['Users','Tags','Comments' => ['sort' => ['Comments.id' => 'DESC']]])->firstOrFail();
         $this->set(compact('article'));
     }
 
