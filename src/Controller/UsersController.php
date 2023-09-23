@@ -22,7 +22,7 @@ class UsersController extends AppController
 
     public function login()
     {
-        $this->Authorization->skipAuthorization();
+        //$this->Authorization->skipAuthorization();
         $this->request->allowMethod(['get', 'post']);
         $result = $this->Authentication->getResult();
         // POST, GET を問わず、ユーザーがログインしている場合はリダイレクトします
