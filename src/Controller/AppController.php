@@ -46,7 +46,10 @@ class AppController extends Controller
         // 認証結果を確認し、サイトのロックを行うために次の行を追加します
         $this->loadComponent('Authentication.Authentication');
         //
-        $this->loadComponent('Authorization.Authorization');
+        $this->loadComponent('Authorization.Authorization',[
+            'skipAuthorization' => ['login','token'],
+            //'authorizeModel' => ['index','add'],
+        ]);
 
         /*
          * Enable the following component for recommended CakePHP form protection settings.
