@@ -57,7 +57,6 @@ class CommentsController extends AppController
     public function add($article_id)
     {
         $comment = $this->Comments->newEmptyEntity();
-        $comment->article_id = $article_id;
         if ($this->request->is('post')) {
             $comment = $this->Comments->patchEntity($comment, $this->request->getData());
             if ($this->Comments->save($comment)) {
@@ -67,8 +66,8 @@ class CommentsController extends AppController
             }
             $this->Flash->error(__('The comment could not be saved. Please, try again.'));
         }
-        $articles = $this->Comments->Articles->find('list', ['limit' => 200])->all();
-        $this->set(compact('comment', 'articles'));
+        $article = $this->Comments->Articles->get($article_id);
+        $this->set(compact('comment', 'article'));
     }
 
     /**
