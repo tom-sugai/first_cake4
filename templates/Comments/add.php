@@ -20,6 +20,7 @@
                 <?php
                     //echo $this->Form->control('article_id', ['options' => $articles]);
                     echo "<h4>article_id : " . $comment->article_id . "</h4>";
+                    echo $article->title;
                     echo $this->Form->control('body');
                     echo $this->Form->control('published');
                     echo $this->Form->control('contributor');
