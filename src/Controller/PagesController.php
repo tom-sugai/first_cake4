@@ -30,7 +30,13 @@ use Cake\View\Exception\MissingTemplateException;
  * @link https://book.cakephp.org/4/en/controllers/pages-controller.html
  */
 class PagesController extends AppController
-{
+{    
+    public function initialize(): void
+    {
+        parent ::initialize();
+        $this->Authorization->skipAuthorization();
+    }
+
     /**
      * Displays a view
      *
