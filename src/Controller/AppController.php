@@ -48,7 +48,7 @@ class AppController extends Controller
         // 認可（アクセス権）の許可設定
         $this->loadComponent('Authorization.Authorization',[
             'skipAuthorization' => ['login','token'],
-            'authorizeModel' => ['index','add'],
+            //'authorizeModel' => ['index','add'],
         ]);
 
         /*
