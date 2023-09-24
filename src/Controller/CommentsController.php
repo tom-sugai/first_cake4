@@ -24,7 +24,7 @@ class CommentsController extends AppController
      */
     public function index()
     {
-        $this->Authorization->skipAuthorization();
+        //$this->Authorization->skipAuthorization();
         $this->paginate = [
             'contain' => ['Articles'],
         ];
