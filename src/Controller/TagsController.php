@@ -18,7 +18,7 @@ class TagsController extends AppController
      */
     public function index()
     {
-        $this->Authorization->skipAuthorization();
+        //$this->Authorization->skipAuthorization();
         $tags = $this->paginate($this->Tags);
 
         $this->set(compact('tags'));
