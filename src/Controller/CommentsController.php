@@ -14,8 +14,7 @@ class CommentsController extends AppController
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         parent::beforeFilter($event);
-
-        $this->Authorization->skipAuthorization();
+        //$this->Authorization->skipAuthorization();
     }
 
     /**
@@ -25,6 +24,7 @@ class CommentsController extends AppController
      */
     public function index()
     {
+        $this->Authorization->skipAuthorization();
         $this->paginate = [
             'contain' => ['Articles'],
         ];
@@ -56,13 +56,15 @@ class CommentsController extends AppController
      */
     public function add($article_id)
     {
+        $this->Authorization->skipAuthorization();
         $comment = $this->Comments->newEmptyEntity();
+        $comment->article_id = $article_id;
         if ($this->request->is('post')) {
             $comment = $this->Comments->patchEntity($comment, $this->request->getData());
             if ($this->Comments->save($comment)) {
                 $this->Flash->success(__('The comment has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller' => 'Articles', 'action' => 'index']);
             }
             $this->Flash->error(__('The comment could not be saved. Please, try again.'));
         }
