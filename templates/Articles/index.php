@@ -7,6 +7,7 @@
         <th>body</th>
         <th>comment</th>
         <th>created</th>
+        <th>action</th>
     </tr>
     <?php foreach ($articles as $article ): ?>
         <tr>
@@ -14,10 +15,13 @@
                 <?= $article->id ?>
             </td>
             <td>
+                <?= strtok(strtok($article->user->email,'@'),'.') ?>
+            </td>
+            <td>
                 <?= $this->Html->link($article->title, ['action' => 'view', $article->slug]) ?>
             </td>
             <td>
-                <?= $article->body ?>
+                <!--<?= $article->body ?>-->
             </td>
             <td>
                 <?php
@@ -29,7 +33,8 @@
                  ?>
             </td>
             <td>
-                <?= $article->created->format(DATE_RFC850) ?>
+                <!--<?= $article->created->format(DATE_RFC850) ?>-->
+                <?= $article->created->format('y/m/d') ?>
             </td>
             <td>
                 <?= $this->Html->link('edit', ['action' => 'edit', $article->slug]) ?>
