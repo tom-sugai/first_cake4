@@ -45,10 +45,10 @@ class AppController extends Controller
         $this->loadComponent('Flash');
         // 認証結果を確認し、サイトのロックを行うために次の行を追加します
         $this->loadComponent('Authentication.Authentication');
-        //
+        // 認可（アクセス権）の許可設定
         $this->loadComponent('Authorization.Authorization',[
             'skipAuthorization' => ['login','token'],
-            //'authorizeModel' => ['index','add'],
+            'authorizeModel' => ['index','add'],
         ]);
 
         /*
