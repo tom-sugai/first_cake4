@@ -28,7 +28,6 @@ class ArticlesController extends AppController
     public function view($slug = null)
     {
         $this->Authorization->skipAuthorization();
-        
         $article = $this->Articles->findBySlug($slug)->contain(['Users','Tags','Comments' => ['sort' => ['Comments.id' => 'DESC']]])->firstOrFail();
         $this->set(compact('article'));
     }
@@ -38,7 +37,6 @@ class ArticlesController extends AppController
         $article = $this->Articles->newEmptyEntity();
         // check Authoraization Policy
         $this->Authorization->authorize($article);
-        
         if ($this->request->is('post')) {
             $article = $this->Articles->patchEntity($article, $this->request->getData());
             $article->user_id = 5;
