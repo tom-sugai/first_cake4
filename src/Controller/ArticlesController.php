@@ -14,8 +14,7 @@ class ArticlesController extends AppController
 
     public function index()
     {
-        $this->Authorization->skipAuthorization();
-
+        $this->Authorization->skipAuthorization();  
         $this->paginate = [
             'contain' => ['Users', 'Comments'],
             'limit' => 5,
