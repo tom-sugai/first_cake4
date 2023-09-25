@@ -31,6 +31,7 @@ class UserPolicy
      */
     public function canEdit(IdentityInterface $user, User $resource)
     {
+        return ($user->role === 'admin' || $resource->id === $user->getIdentifier());        
     }
 
     /**
@@ -53,5 +54,6 @@ class UserPolicy
      */
     public function canView(IdentityInterface $user, User $resource)
     {
+        return ($user->role === 'admin' || $resource->id === $user->getIdentifier());
     }
 }
