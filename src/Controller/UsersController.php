@@ -73,6 +73,7 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
+        $this->Authorization->authorize($this->Users->get($id),'view');
         $user = $this->Users->get($id, [
             'contain' => ['Articles'],
         ]);
@@ -109,6 +110,7 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
+        $this->Authorization->authorize($this->Users->get($id), 'edit');
         $user = $this->Users->get($id, [
             'contain' => [],
         ]);
