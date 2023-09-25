@@ -43,6 +43,7 @@ class UserPolicy
      */
     public function canDelete(IdentityInterface $user, User $resource)
     {
+        return ($user->role === 'admin' || $resource->id === $user->getIdentifier());        
     }
 
     /**
