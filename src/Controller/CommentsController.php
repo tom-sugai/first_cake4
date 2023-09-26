@@ -59,6 +59,7 @@ class CommentsController extends AppController
         $this->Authorization->skipAuthorization();
         $comment = $this->Comments->newEmptyEntity();
         $comment->article_id = $article_id;
+        $comment->contributor = $this->request->getAttribute('identity')->get('email');
         if ($this->request->is('post')) {
             $comment = $this->Comments->patchEntity($comment, $this->request->getData());
             if ($this->Comments->save($comment)) {
