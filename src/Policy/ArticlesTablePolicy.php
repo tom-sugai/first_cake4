@@ -21,6 +21,6 @@ class ArticlesTablePolicy
     // here you can resolve true or false depending of the identity required characteristics
         //$identity['can_index']=true;
         //return $identity['can_index'];
-        return true;
+        //return true;
     }
 }
