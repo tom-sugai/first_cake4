@@ -16,14 +16,13 @@ class ArticlesController extends AppController
     {
         parent::beforeFilter($event);
         // アプリケーション内のすべてのコントローラーの index と view アクションをパブリックにし、認証チェックをスキップします
-        $this->Authentication->addUnauthenticatedActions(['index', 'view']);
+        $this->Authentication->addUnauthenticatedActions(['index','view']);
     }
 
     public function index()
     {
+        // allow all user to index articlesTable unless autenticate & authorize 
         $this->Authorization->skipAuthorization();
-        // check Authoraization Policy
-        //$this->Authorization->authorize($this->Articles, 'Index');
         $this->paginate = [
             'contain' => ['Users', 'Comments'],
             'limit' => 5,
@@ -36,6 +35,7 @@ class ArticlesController extends AppController
 
     public function view($slug = null)
     {
+        // allow all user to view article 
         $this->Authorization->skipAuthorization();
         $article = $this->Articles->findBySlug($slug)->contain(['Users','Tags','Comments' => ['sort' => ['Comments.id' => 'DESC']]])->firstOrFail();
         $this->set(compact('article'));
