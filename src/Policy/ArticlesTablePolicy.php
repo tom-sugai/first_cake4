@@ -18,6 +18,7 @@ class ArticlesTablePolicy
 
     public function canIndex(IdentityInterface $identity)
     {
+    // now did'nt use by Articles/index
     // here you can resolve true or false depending of the identity required characteristics
         //$identity['can_index']=true;
         //return $identity['can_index'];
