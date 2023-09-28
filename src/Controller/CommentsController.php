@@ -14,7 +14,9 @@ class CommentsController extends AppController
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         parent::beforeFilter($event);
-        //$this->Authorization->skipAuthorization();
+        // コントローラーの index と view アクションをパブリックにし、認証チェックをスキップします
+        $this->Authentication->addUnauthenticatedActions(['index', 'view']);
+        $this->Authorization->skipAuthorization(['index']);
     }
 
     /**
@@ -24,7 +26,6 @@ class CommentsController extends AppController
      */
     public function index()
     {
-        //$this->Authorization->skipAuthorization();
         $this->paginate = [
             'contain' => ['Articles'],
         ];
@@ -56,7 +57,6 @@ class CommentsController extends AppController
      */
     public function add($article_id)
     {
-        $this->Authorization->skipAuthorization();
         $comment = $this->Comments->newEmptyEntity();
         $comment->article_id = $article_id;
         $comment->contributor = $this->request->getAttribute('identity')->get('email');
@@ -85,6 +85,8 @@ class CommentsController extends AppController
         $comment = $this->Comments->get($id, [
             'contain' => [],
         ]);
+        // check Authoraization Policy
+        $this->Authorization->authorize($comment, 'edit');
         if ($this->request->is(['patch', 'post', 'put'])) {
             $comment = $this->Comments->patchEntity($comment, $this->request->getData());
             if ($this->Comments->save($comment)) {
