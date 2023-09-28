@@ -60,6 +60,7 @@ class ArticlePolicy
      */
     public function canView(IdentityInterface $user, Article $article)
     {
+        return true;
     }
 
     protected function isAuthor(IdentityInterface $user, Article $article)
