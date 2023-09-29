@@ -24,7 +24,7 @@
                 <?php foreach ($comments as $comment): ?>
                 <tr>
                     <td><?= $this->Number->format($comment->id) ?></td>
-                    <td><?= $comment->has('article') ? $this->Html->link($comment->article->title, ['controller' => 'Articles', 'action' => 'view', $comment->article->id]) : '' ?></td>
+                    <td><?= $comment->has('article') ? $this->Html->link($comment->article->title, ['controller' => 'Articles', 'action' => 'view', $comment->article->slug]) : '' ?></td>
                     <td><?= h($comment->published) ?></td>
                     <td><?= h($comment->created) ?></td>
                     <td><?= h($comment->modified) ?></td>
