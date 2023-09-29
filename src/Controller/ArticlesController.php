@@ -28,7 +28,6 @@ class ArticlesController extends AppController
             'limit' => 5,
             'order' => ['Articles.id' => 'desc']
         ];
-
         $articles = $this->paginate($this->Articles->find());
         $this->set(compact('articles'));        
     }
