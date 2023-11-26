@@ -11,6 +11,14 @@ namespace App\Controller;
  */
 class TagsController extends AppController
 {
+    public function beforeFilter(\Cake\Event\EventInterface $event)
+    {
+        parent::beforeFilter($event);
+        // コントローラーの index と view アクションをパブリックにし、認証チェックをスキップします
+        $this->Authentication->addUnauthenticatedActions(['index', 'view']);
+        $this->Authorization->skipAuthorization(['index']);
+    }
+
     /**
      * Index method
      *
