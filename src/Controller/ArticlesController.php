@@ -51,6 +51,7 @@ class ArticlesController extends AppController
         $this->autoLayout = true;
         $this->autoRender = true;
         //$this->viewBuilder()->setLayout('otsukai_layout');
+        
         /** 
         // put here Event dispatch program here
         $message = "New Post by " . $this->useremail;
@@ -64,11 +65,16 @@ class ArticlesController extends AppController
         //return $this->redirect(['action' => 'index']);
         */
         
-        //$mailer = new Mailer('default');
+        $message = "New Post by " . $this->useremail;
         $this->mailer
+            ->setEmailFormat('html')
             ->setTo('fumiko@svr.home.com')
-            ->setSubject('About')
-            ->deliver('My message');
+            ->setSubject('New Post')
+            ->setViewVars(['message' => $message, 'article' => $article])
+            ->viewBuilder()
+                ->setTemplate('newpost')
+                ->setLayout('default');
+        $this->mailer->deliver();
         
 
     }
