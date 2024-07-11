@@ -58,8 +58,8 @@ class ArticlesController extends AppController
             //->setTo('tom.sugai@mineo.jp')
             //->setTo(['tom.sugai@theia.ocn.ne.jp','tom.sugai@gmail.com'])
             ->setTo('fumiko@svr.home.com')
-            ->setSubject('Message')
-            ->deliver('Could i change ??');
+            ->setSubject('Locale Mail Test')
+            ->deliver('Could i send to Fumiko email ??');
 
     }
 
