@@ -47,24 +47,8 @@ class ArticlesController extends AppController
     public function smail()
     {
         $this->Authorization->skipAuthorization();
-
         $this->autoLayout = true;
         $this->autoRender = true;
-        //$this->viewBuilder()->setLayout('otsukai_layout');
-
-        /** 
-        // put here Event dispatch program here
-        $message = "New Post by " . $this->useremail;
-        //debug($message);
-        //$event = new Event('Notification.E-Mail',$this,['message' => $message, 'article' => $article]);
-        $event = new Event('Notification.E-Mail',$this,['message' => $message]);
-        //debug($event);
-        $this->getEventManager()->dispatch($event);
-        $this->Flash->success(__('event dispatched.' . "form $this->useremail"));
-
-        //return $this->redirect(['action' => 'index']);
-        */
-        
 
         $this->mailer
             ->setTransport('default')
