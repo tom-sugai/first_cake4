@@ -127,9 +127,10 @@ class ArticlesController extends AppController
                 $this->Flash->success(__('The article has been saved.'));
                 //debug($article);
                 $message = "New Post by " . $this->useremail;
+                $setTo = ['fumiko@svr.home.com', 'tom@svr.home.com'];
                 $this->mailer
                     ->setEmailFormat('html')
-                    ->setTo('fumiko@svr.home.com')
+                    ->setTo($setTo)
                     ->setSubject('New Post')
                     ->setViewVars(['message' => $message, 'article' => $article])
                     ->viewBuilder()
