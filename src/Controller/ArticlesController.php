@@ -138,7 +138,7 @@ class ArticlesController extends AppController
                         ->setTemplate('newpost')
                         ->setLayout('default');
                 $this->mailer->deliver();
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'top']);
             }
             $this->Flash->error(__('The article could not be saved. Please, try again.'));
         }
